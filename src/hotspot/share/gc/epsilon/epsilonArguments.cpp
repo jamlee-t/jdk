@@ -46,7 +46,7 @@ void EpsilonArguments::initialize() {
   }
 
   if (EpsilonMaxTLABSize < MinTLABSize) {
-    log_warning(gc)("EpsilonMaxTLABSize < MinTLABSize, adjusting it to " SIZE_FORMAT, MinTLABSize);
+    log_warning(gc)("EpsilonMaxTLABSize < MinTLABSize, adjusting it to %zu", MinTLABSize);
     EpsilonMaxTLABSize = MinTLABSize;
   }
 
@@ -68,7 +68,7 @@ void EpsilonArguments::initialize() {
 
 void EpsilonArguments::initialize_alignments() {
   size_t page_size = UseLargePages ? os::large_page_size() : os::vm_page_size();
-  size_t align = MAX2((size_t)os::vm_allocation_granularity(), page_size);
+  size_t align = MAX2(os::vm_allocation_granularity(), page_size);
   SpaceAlignment = align;
   HeapAlignment  = align;
 }
